@@ -1,0 +1,22 @@
+<div class="flex-container">
+    <%= render partial: 'users/users' %>
+    <section class="flex-items chat-sec">
+        <div class="conv-box d-border" id='messages-container'>
+             <h2 class="chat-tittle"><%= @user[:first_name]%> </h2>
+            <% @room_messages.each do |room_message| %>
+                <%if room_message.messageType === "photo" %>
+                    <%= render partial: 'adminPhoto',locals:{message: room_message.message} %>     
+                <%elsif room_message.direction === "to" %>
+                    <%= render partial: 'adminMessage',locals:{message: room_message.message} %>     
+                  <%else%>
+                    <%= render partial: 'userMessage',locals:{message: room_message.message} %>                
+                <%end%>
+            <% end %>
+        </div>
+        <div class="message-box d-border" >
+                    <%= render partial: 'sendMessage',locals:{user_id: @room_messages[0][:user_id]} %>  
+        </div>
+           
+
+     </section>
+</div>

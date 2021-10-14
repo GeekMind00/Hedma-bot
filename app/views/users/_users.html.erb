@@ -1,0 +1,18 @@
+<section class="flex-items conversation-sec">
+            
+    <div class="conv-list">
+        <h2>Your messages</h2>
+        <% if @users.present? %>
+            <% @users.each do |user| %>
+                <nav class="conv-info d-border">
+                    <%= link_to user.first_name, "/room_messages/#{user.id}",class:'link-control' %>
+                </nav>
+            <% end %>
+        <% else %>
+        <div class="text-muted">
+            The are no users
+        </div>
+        <% end %>
+    </div>
+            
+</section>
